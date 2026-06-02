@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lecture Notes Recorder</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">Lecture Notes Recorder</p>
+          <h1>Record a lecture and turn the voice into notes.</h1>
+        </div>
+        <div class="status" id="status">Ready</div>
+      </section>
+
+      <section class="controls" aria-label="Recording controls">
+        <button id="recordButton" class="primary">
+          <span id="recordIcon" aria-hidden="true"></span>
+          <span id="recordLabel">Start Recording</span>
+        </button>
+        <button id="stopButton" disabled>Stop</button>
+        <button id="makeNotesButton">Make Notes</button>
+        <button id="exportButton" class="accent">Export PDF</button>
+      </section>
+
+      <section class="meta">
+        <label>
+          Lecture title
+          <input id="lectureTitle" type="text" value="Untitled Lecture">
+        </label>
+        <label>
+          Date
+          <input id="lectureDate" type="date">
+        </label>
+      </section>
+
+      <section class="workspace">
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Transcript</h2>
+            <button id="clearTranscriptButton" class="small">Clear</button>
+          </div>
+          <textarea id="transcript" spellcheck="true" placeholder="Your lecture transcript will appear here. You can also paste text here, then press Make Notes."></textarea>
+          <p class="hint" id="speechHint">Live transcription works best in Chrome or Edge.</p>
+        </article>
+
+        <article class="panel notes-panel">
+          <div class="panel-head">
+            <h2>Notes</h2>
+            <button id="copyNotesButton" class="small">Copy</button>
+          </div>
+          <div id="notes" class="notes" contenteditable="true" aria-label="Editable lecture notes">
+            <h3>Key Points</h3>
+            <ul>
+              <li>Press Start Recording to begin capturing the lecture.</li>
+              <li>Press Make Notes after the transcript appears.</li>
+              <li>Edit these notes before exporting if you want.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="audio-card" id="audioCard" hidden>
+        <div>
+          <h2>Audio Recording</h2>
+          <p>Keep this file if you want to review the lecture later.</p>
+        </div>
+        <audio id="audioPlayback" controls></audio>
+        <a id="downloadAudio" class="download" download="lecture-recording.webm">Download audio</a>
+      </section>
+    </main>
+
+    <section class="print-page" aria-hidden="true">
+      <header>
+        <p>Lecture Notes</p>
+        <h1 id="printTitle">Untitled Lecture</h1>
+        <span id="printDate"></span>
+      </header>
+      <div id="printNotes"></div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
